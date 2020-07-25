@@ -1,0 +1,26 @@
+name: lint
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-haskell@v1
+        with:
+          ghc-version: 8.10.1
+      - uses: actions/cache@v2
+        with:
+          path: $HOME/.cabal/packages
+          key: packages-${{ runner.os }}-8.10.1
+      - uses: actions/cache@v2
+        with:
+          path: $HOME/.cabal/store
+          key: store-${{ runner.os }}-8.10.1
+      - run: make setup-lint 
+      - run: echo "::set-env name=PATH::$HOME/.cabal/bin:$PATH"
+      - run: make lint
