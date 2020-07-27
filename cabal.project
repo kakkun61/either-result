@@ -1,0 +1,4 @@
+packages: .
+
+package either-result
+  test-show-details: direct

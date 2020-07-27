@@ -8,6 +8,9 @@ build: build-deps
 build-deps:
 	cabal v2-build --only-dependencies $(CABAL_OPTIONS)
 
+.PHONY: test
+test: doctest
+
 .PHONY: doctest
 doctest: build-deps
 	cabal v2-test doctest
