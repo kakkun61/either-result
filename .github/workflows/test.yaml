@@ -34,3 +34,4 @@ jobs:
       - run: make build-deps
       - run: make build
       - run: make doctest
+      - run: make spec
