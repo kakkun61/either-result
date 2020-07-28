@@ -116,7 +116,7 @@ fromEither :: Either String a -> Result a
 fromEither = Result
 {-# INLINE fromEither #-}
 
--- | Convert @'Either' 'String' a@ from @'Result' a@.
+-- | Convert @'Result' a@ to @'Either' 'String' a@.
 toEither :: Result a -> Either String a
 toEither = either
 {-# INLINE toEither #-}
