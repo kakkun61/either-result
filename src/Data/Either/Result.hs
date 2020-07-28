@@ -11,7 +11,7 @@
 -- | @'Result' a@ is a wrapper of @'Either' 'String' a@, but 'Result' is an instance of 'MonadFail'.
 -- A discussion about 'MonadFail' of 'Either' is <https://gitlab.haskell.org/ghc/ghc/-/issues/12160>.
 module Data.Either.Result
-  ( type Result
+  ( type Result (Result, runResult)
   , pattern Error
   , pattern Success
   , result
@@ -36,7 +36,7 @@ import           Control.Monad.Fail  (MonadFail (fail))
 
 -- | @'Result' a@ is a wrapper of @'Either' 'String' a@.
 newtype Result a =
-  Result { either :: Either String a }
+  Result { runResult :: Either String a }
   deriving stock (Eq, Ord, Generic, Functor, Foldable, Traversable)
   deriving newtype (Semigroup, Applicative, Monad)
 
@@ -118,7 +118,7 @@ fromEither = Result
 
 -- | Convert @'Result' a@ to @'Either' 'String' a@.
 toEither :: Result a -> Either String a
-toEither = either
+toEither = runResult
 {-# INLINE toEither #-}
 
 -- | Convert @'Result' a@ to @a@ with a default value.

@@ -49,3 +49,15 @@ test-suite doctest
                -rtsopts
                -with-rtsopts=-N
   build-tool-depends: doctest-discover:doctest-discover
+
+test-suite spec
+  import: common
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs: spec
+  build-depends: either-result,
+                 hspec
+  ghc-options: -threaded
+               -rtsopts
+               -with-rtsopts=-N
+  build-tool-depends: hspec-discover:hspec-discover
