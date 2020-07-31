@@ -18,7 +18,12 @@ module Data.Either.Result
   , fromEither
   , toEither
   , fromSuccess
+  , toMonadFail
   ) where
+
+#if !MIN_VERSION_base(4,13,0)
+import           Prelude             hiding (fail)
+#endif
 
 import           Control.Applicative (Alternative (empty, (<|>)))
 import           Control.Monad       (MonadPlus (mplus, mzero))
@@ -125,3 +130,9 @@ fromSuccess :: a -> Result a -> a
 fromSuccess _ (Success a) = a
 fromSuccess a _           = a
 {-# INLINE fromSuccess #-}
+
+-- | Convert @'Result' a@ to @'MonadFail' m => m a@.
+toMonadFail :: MonadFail m => Result a -> m a
+toMonadFail (Success a) = pure a
+toMonadFail (Error e)   = fail e
+{-# INLINE toMonadFail #-}
