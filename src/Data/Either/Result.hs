@@ -110,6 +110,7 @@ pattern Success a = Result (Right a)
 result :: (String -> b) -> (a -> b) -> Result a -> b
 result f _ (Error e)   = f e
 result _ g (Success a) = g a
+{-# INLINE result #-}
 
 -- | Convert @'Either' 'String' a@ to @'Result' a@.
 fromEither :: Either String a -> Result a
@@ -125,3 +126,4 @@ toEither = runResult
 fromSuccess :: a -> Result a -> a
 fromSuccess _ (Success a) = a
 fromSuccess a _           = a
+{-# INLINE fromSuccess #-}
