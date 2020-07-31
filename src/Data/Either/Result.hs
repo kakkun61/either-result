@@ -20,8 +20,6 @@ module Data.Either.Result
   , fromSuccess
   ) where
 
-import           Prelude             hiding (either)
-
 import           Control.Applicative (Alternative (empty, (<|>)))
 import           Control.Monad       (MonadPlus (mplus, mzero))
 import           GHC.Generics        (Generic)
