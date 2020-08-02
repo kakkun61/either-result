@@ -19,7 +19,7 @@ module Data.Either.Result
   ) where
 
 #if !MIN_VERSION_base(4,13,0)
-import           Prelude             hiding (fail)
+import Prelude hiding (fail)
 #endif
 
 import           Control.Applicative (Alternative (empty, (<|>)))
@@ -31,7 +31,7 @@ import qualified Text.Read           as R
 import qualified Text.Read.Lex       as R
 
 #if !MIN_VERSION_base(4,13,0)
-import           Control.Monad.Fail  (MonadFail (fail))
+import Control.Monad.Fail (MonadFail (fail))
 #endif
 
 -- | @'Result' a@ is a wrapper of @'Either' 'String' a@.
@@ -44,7 +44,7 @@ newtype Result a =
   deriving newtype (Semigroup, Applicative, Monad)
 
 instance Show a => Show (Result a) where
-  showsPrec d (Error e) = showParen (S.appPrec < d) $ showString "Error " . showsPrec S.appPrec1 e
+  showsPrec d (Error e)   = showParen (S.appPrec < d) $ showString "Error " . showsPrec S.appPrec1 e
   showsPrec d (Success a) = showParen (S.appPrec < d) $ showString "Success " . showsPrec S.appPrec1 a
 
 instance Read a => Read (Result a) where
