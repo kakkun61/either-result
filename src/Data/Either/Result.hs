@@ -36,7 +36,10 @@ import           Control.Monad.Fail  (MonadFail (fail))
 
 -- | @'Result' a@ is a wrapper of @'Either' 'String' a@.
 newtype Result a =
-  Result { runResult :: Either String a }
+  Result
+    { -- | Unwrap 'Result'.
+      runResult :: Either String a
+    }
   deriving stock (Eq, Ord, Generic, Functor, Foldable, Traversable)
   deriving newtype (Semigroup, Applicative, Monad)
 
