@@ -2,7 +2,6 @@
 {-# LANGUAGE DeriveGeneric              #-}
 {-# LANGUAGE DeriveTraversable          #-}
 {-# LANGUAGE DerivingStrategies         #-}
-{-# LANGUAGE ExplicitNamespaces         #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE PatternSynonyms            #-}
 
@@ -11,9 +10,7 @@
 -- | @'Result' a@ is a wrapper of @'Either' 'String' a@, but 'Result' is an instance of 'MonadFail'.
 -- A discussion about 'MonadFail' of 'Either' is <https://gitlab.haskell.org/ghc/ghc/-/issues/12160>.
 module Data.Either.Result
-  ( type Result (Result, runResult)
-  , pattern Error
-  , pattern Success
+  ( Result (Result, Error, Success, runResult)
   , result
   , fromEither
   , toEither
