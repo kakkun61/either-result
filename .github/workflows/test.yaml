@@ -33,5 +33,7 @@ jobs:
           key: store-${{ runner.os }}-${{ matrix.ghc }}
       - run: make build-deps
       - run: make build
+        env:
+          CABAL_OPTIONS: --ghc-options -Werror
       - run: make doctest
       - run: make spec

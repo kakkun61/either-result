@@ -21,6 +21,6 @@ jobs:
         with:
           path: $HOME/.cabal/store
           key: store-${{ runner.os }}-8.10.1
-      - run: make setup-lint 
+      - run: make setup-lint
       - run: echo "::set-env name=PATH::$HOME/.cabal/bin:$PATH"
       - run: make lint

@@ -13,11 +13,11 @@ test: doctest spec
 
 .PHONY: doctest
 doctest: build-deps
-	cabal v2-test doctest
+	cabal v2-test doctest $(CABAL_OPTIONS)
 
 .PHONY: spec
 spec: build-deps
-	cabal v2-test spec
+	cabal v2-test spec $(CABAL_OPTIONS)
 
 .PHONY: repl
 repl:
