@@ -26,7 +26,12 @@ common common
 library
   import: common
   hs-source-dirs: src
-  exposed-modules: Data.Either.Result
+  exposed-modules: Data.Either.Result,
+                   Control.Monad.Trans.Except.Result,
+                   Control.Monad.Trans.Result,
+                   Control.Monad.Result
+  build-depends: transformers,
+                 mtl
   ghc-options: -Wincomplete-uni-patterns
                -Wincomplete-record-updates
                -Wmonomorphism-restriction
@@ -56,9 +61,12 @@ test-suite spec
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   hs-source-dirs: spec
-  other-modules: Data.Either.ResultSpec
+  other-modules: Control.Monad.Trans.Except.ResultSpec,
+                 Control.Monad.Trans.ResultSpec,
+                 Control.Monad.ResultSpec
   build-depends: either-result,
-                 hspec
+                 hspec,
+                 transformers
   ghc-options: -threaded
                -rtsopts
                -with-rtsopts=-N
