@@ -1,7 +1,7 @@
 cabal-version: 2.2
 
 name: either-result
-version: 0.1.2.0
+version: 0.2.0.0
 synopsis: ‘Result a’ is a wrapper of ‘Either String a’.
 description: ‘Result a’ is a wrapper of ‘Either String a’, but ‘Result’ is an instance of ‘MonadFail’.
 homepage: https://github.com/kakkun61/either-result
