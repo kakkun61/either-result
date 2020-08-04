@@ -1,5 +1,17 @@
 # Revision history for either-result
 
+## 0.3.0.0
+
+*2020.08.05*
+
+### Breaking changes
+
+- Change `Either String` to `Result` for some monad transformer functions' types
+  - `Control.Monad.Result.liftEither` → `Control.Monad.Result.liftResult`
+  - `Control.Monad.Trans.Result.ResultT`
+  - `Control.Monad.Trans.Result.runResultT`
+  - `Control.Monad.Trans.Result.mapResultT`
+
 ## 0.2.0.0
 
 *2020.08.04*
