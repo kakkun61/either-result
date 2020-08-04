@@ -138,18 +138,18 @@ toMonadFail (Error e)   = fail e
 {-# INLINE toMonadFail #-}
 
 -- | Construct and destruct 'T.Result'.
-pattern ResultT :: Functor m => m (Either String a) -> T.ResultT m a
-pattern ResultT m <- (runExceptT . T.runResultT -> m)
-  where ResultT m = T.ResultT $ ExceptT m
+pattern ResultT :: Functor m => m (T.Result a) -> T.ResultT m a
+pattern ResultT m <- ((Result <$>) . runExceptT . T.runResultT -> m)
+  where ResultT m = T.ResultT $ ExceptT $ runResult <$> m
 
 {-# COMPLETE ResultT #-}
 
 -- | Unwrap 'ResultT'.
-runResultT :: Functor m => T.ResultT m a -> m (Either String a)
+runResultT :: Functor m => T.ResultT m a -> m (T.Result a)
 runResultT (ResultT m) = m
 {-# INLINE runResultT #-}
 
 -- | Map the unwrapped computation using the given function.
-mapResultT :: (Functor m, Functor n) => (m (Either String a) -> n (Either String b)) -> T.ResultT m a -> T.ResultT n b
+mapResultT :: (Functor m, Functor n) => (m (T.Result a) -> n (T.Result b)) -> T.ResultT m a -> T.ResultT n b
 mapResultT f = T.mapResultT $ T.runResultT . ResultT . f . runResultT . T.ResultT
 {-# INLINE mapResultT #-}

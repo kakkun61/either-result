@@ -13,7 +13,7 @@
 module Control.Monad.Result
   ( -- * The class
     MonadError (throwError, catchError)
-  , liftEither
+  , liftResult
     -- * The ResultT monad transformer
   , type ResultT (ResultT)
   , runResultT
@@ -52,7 +52,7 @@ instance Monad m => MonadError String (ResultT m) where
   catchError = catchE
   {-# INLINE catchError #-}
 
--- | Lift 'Either' into 'MonadError'.
-liftEither :: MonadError String m => Either String a -> m a
-liftEither = either throwError pure
-{-# INLINE liftEither #-}
+-- | Lift 'Result' into 'MonadError'.
+liftResult :: MonadError String m => Result a -> m a
+liftResult = result throwError pure
+{-# INLINE liftResult #-}
