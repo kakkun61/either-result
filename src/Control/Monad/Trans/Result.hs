@@ -1,8 +1,8 @@
-{-# LANGUAGE CPP                  #-}
-{-# LANGUAGE ExplicitNamespaces   #-}
-{-# LANGUAGE FlexibleInstances    #-}
-{-# LANGUAGE PatternSynonyms      #-}
-{-# LANGUAGE ViewPatterns         #-}
+{-# LANGUAGE CPP                #-}
+{-# LANGUAGE ExplicitNamespaces #-}
+{-# LANGUAGE FlexibleInstances  #-}
+{-# LANGUAGE PatternSynonyms    #-}
+{-# LANGUAGE ViewPatterns       #-}
 
 {-# OPTIONS_GHC -Wno-orphans #-}
 
