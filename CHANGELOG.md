@@ -1,5 +1,11 @@
 # Revision history for either-result
 
+## 0.3.1.0
+
+*2020.08.16*
+
+- Add mtl instances
+
 ## 0.3.0.0
 
 *2020.08.05*
