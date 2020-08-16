@@ -34,8 +34,13 @@ import qualified Control.Monad.Trans.Except as Except
 
 import Control.Applicative        (Alternative)
 import Control.Monad              (MonadPlus)
+import Control.Monad.Cont.Class   (MonadCont)
 import Control.Monad.Fix          (MonadFix)
 import Control.Monad.IO.Class     (MonadIO)
+import Control.Monad.Reader.Class (MonadReader)
+import Control.Monad.RWS.Class    (MonadRWS)
+import Control.Monad.State.Class  (MonadState)
+import Control.Monad.Writer.Class (MonadWriter)
 import Control.Monad.Zip          (MonadZip)
 import Data.Functor.Classes       (Eq1, Ord1, Read1 (liftReadPrec), Show1 (liftShowsPrec), readData, readUnaryWith,
                                    showsUnaryWith)
@@ -70,7 +75,7 @@ newtype ResultT m a =
       runResultT :: ExceptT String m a
     }
   deriving stock (Show, Read, Eq, Ord, Generic, Functor, Foldable, Traversable)
-  deriving newtype (Eq1, Ord1, Applicative, Alternative, Monad, MonadTrans, MonadFix, MonadZip, MonadIO, MonadPlus, Contravariant)
+  deriving newtype (Eq1, Ord1, Applicative, Alternative, Monad, MonadTrans, MonadFix, MonadZip, MonadIO, MonadPlus, MonadCont, MonadRWS r w s, MonadReader r, MonadState s, MonadWriter w, Contravariant)
 
 instance Read1 m => Read1 (ResultT m) where
   liftReadPrec rp rl =
