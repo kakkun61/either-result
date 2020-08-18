@@ -85,6 +85,8 @@ pattern Result :: Either String a -> T.Result a
 pattern Result r <- (runIdentity . runExceptT . T.runResultT -> r)
   where Result r = T.ResultT $ ExceptT $ pure r
 
+{-# COMPLETE Result #-}
+
 -- | Unrap @'T.Result' a@.
 runResult :: T.Result a -> Either String a
 runResult = runExcept . T.runResult
