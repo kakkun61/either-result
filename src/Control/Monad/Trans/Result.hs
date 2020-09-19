@@ -87,7 +87,7 @@ pattern Result r <- (runIdentity . runExceptT . T.runResultT -> r)
 
 {-# COMPLETE Result #-}
 
--- | Unrap @'T.Result' a@.
+-- | Unwrap @'T.Result' a@.
 runResult :: T.Result a -> Either String a
 runResult = runExcept . T.runResult
 {-# INLINE runResult #-}
