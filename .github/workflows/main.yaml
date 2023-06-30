@@ -1,0 +1,49 @@
+name: main
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        ghc: [8.6.5, 8.8.3, 8.10.1]
+        test: [doctest, spec]
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: haskell/actions/setup@v2
+        id: setup-haskell
+        with:
+          ghc-version: ${{ matrix.ghc }}
+      - run: cp cabal.project.${{ matrix.ghc }}.freeze cabal.project.freeze
+      - uses: actions/cache/restore@v3
+        with:
+          path: |
+            ${{ steps.setup-haskell.outputs.cabal-store }}
+            ./dist-newstyle
+          key: cabal-${{ runner.os }}-${{ matrix.ghc }}-${{ hashFiles('./cabal.project.freeze') }}
+          restore-keys: cabal-${{ runner.os }}-${{ matrix.ghc }}-
+      - run: make build-deps
+      - uses: actions/cache/save@v3
+        with:
+          path: |
+            ${{ steps.setup-haskell.outputs.cabal-store }}
+            ./dist-newstyle
+          key: cabal-${{ runner.os }}-${{ matrix.ghc }}-${{ hashFiles('./cabal.project.freeze') }}
+      - run: make build
+        env:
+          CABAL_OPTIONS: --ghc-options -Werror
+      - run: make ${{ matrix.test }}
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: haskell/actions/hlint-setup@v2
+      - run: sudo apt-get install libtinfo5
+      - run: make lint
