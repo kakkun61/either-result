@@ -1,5 +1,5 @@
-{-# LANGUAGE ExplicitNamespaces         #-}
-{-# LANGUAGE PatternSynonyms            #-}
+{-# LANGUAGE ExplicitNamespaces #-}
+{-# LANGUAGE PatternSynonyms    #-}
 
 {-# OPTIONS_HADDOCK show-extensions #-}
 
@@ -18,5 +18,5 @@ module Data.Either.Result
   , toMonadFail
   ) where
 
-import Control.Monad.Trans.Result (pattern Error, pattern Result, type Result, pattern Success, fromEither,
-                                   fromSuccess, result, runResult, toEither, toMonadFail)
+import Control.Monad.Trans.Result (fromEither, fromSuccess, pattern Error, pattern Result, pattern Success, result,
+                                   runResult, toEither, toMonadFail, type Result)

@@ -39,8 +39,8 @@ import           Control.Monad.Trans.Except        (ExceptT (ExceptT), runExcept
 import qualified Control.Monad.Trans.Except.Result as T
 import           Data.Functor.Identity             (Identity (runIdentity))
 import qualified GHC.Show                          as S
-import           Text.Read                         (Read (readPrec))
 import qualified Text.Read                         as R
+import           Text.Read                         (Read (readPrec))
 import qualified Text.Read.Lex                     as R
 
 #if !MIN_VERSION_base(4,13,0)
@@ -70,7 +70,7 @@ instance {-# OVERLAPPING #-} Read a => Read (T.Result a) where
 
 instance Semigroup (T.Result a) where
   Error _ <> a = a
-  a <> _ = a
+  a <> _       = a
   {-# INLINE (<>) #-}
 
 instance Monoid (T.Result a) where

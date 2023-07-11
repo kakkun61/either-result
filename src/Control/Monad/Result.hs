@@ -35,11 +35,11 @@ module Control.Monad.Result
   , module Control.Monad.Trans
   ) where
 
-import           Control.Monad.Error.Class         (MonadError (catchError, throwError))
-import           Control.Monad.Trans.Except.Result (Result, ResultT)
-import           Control.Monad.Trans.Result        (pattern Error, pattern Result, pattern ResultT, pattern Success,
-                                                    catchE, fromEither, fromSuccess, mapResultT, result, runResult,
-                                                    runResultT, throwE, toEither, toMonadFail)
+import Control.Monad.Error.Class         (MonadError (catchError, throwError))
+import Control.Monad.Trans.Except.Result (Result, ResultT)
+import Control.Monad.Trans.Result        (catchE, fromEither, fromSuccess, mapResultT, pattern Error, pattern Result,
+                                          pattern ResultT, pattern Success, result, runResult, runResultT, throwE,
+                                          toEither, toMonadFail)
 
 import Control.Monad
 import Control.Monad.Fix
