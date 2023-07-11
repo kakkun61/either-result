@@ -6,6 +6,16 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE PatternSynonyms            #-}
 
+#if __GLASGOW_HASKELL__ >= 906
+-- To suppress:
+--
+-- src\Control\Monad\Trans\Except\Result.hs:81:21: warning: [GHC-30606] [-Wredundant-constraints]
+--     • Redundant constraint: Eq a
+--     • When deriving the instance for (Eq1 (ResultT m))
+--
+-- A newer 'transformers' package may fix this warning.
+{-# OPTIONS_GHC -Wno-redundant-constraints #-}
+#endif
 {-# OPTIONS_HADDOCK show-extensions #-}
 
 -- | This monad transformer extends a monad with the ability to fail.
