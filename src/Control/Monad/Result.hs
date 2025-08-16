@@ -42,9 +42,9 @@ import Control.Monad.Trans.Result        (catchE, fromEither, fromSuccess, mapRe
                                           toEither, toMonadFail)
 
 import Control.Monad
+import Control.Monad.Error.Class
 import Control.Monad.Fix
 import Control.Monad.Trans
-import Control.Monad.Error.Class
 
 instance Monad m => MonadError String (ResultT m) where
   throwError = throwE
