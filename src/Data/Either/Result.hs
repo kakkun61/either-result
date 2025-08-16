@@ -16,7 +16,8 @@ module Data.Either.Result
   , toEither
   , fromSuccess
   , toMonadFail
+  , mapError
   ) where
 
-import Control.Monad.Trans.Result (fromEither, fromSuccess, pattern Error, pattern Result, pattern Success, result,
-                                   runResult, toEither, toMonadFail, type Result)
+import Control.Monad.Trans.Result (fromEither, fromSuccess, mapError, pattern Error, pattern Result, pattern Success,
+                                   result, runResult, toEither, toMonadFail, type Result)

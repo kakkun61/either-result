@@ -21,11 +21,13 @@ module Control.Monad.Trans.Result
   , toEither
   , fromSuccess
   , toMonadFail
+  , mapError
     -- * The ResultT monad transformer
   , type T.ResultT
   , pattern ResultT
   , runResultT
   , mapResultT
+  , mapErrorT
     -- * Exception operations
   , T.throwE
   , T.catchE
@@ -139,6 +141,11 @@ toMonadFail (Success a) = pure a
 toMonadFail (Error e)   = fail e
 {-# INLINE toMonadFail #-}
 
+-- | Map the error in 'T.Result'.
+mapError :: (String -> String) -> T.Result a -> T.Result a
+mapError = mapErrorT
+{-# INLINE mapError #-}
+
 -- | Construct and destruct 'T.Result'.
 pattern ResultT :: Functor m => m (T.Result a) -> T.ResultT m a
 pattern ResultT m <- ((Result <$>) . runExceptT . T.runResultT -> m)
@@ -155,3 +162,12 @@ runResultT (ResultT m) = m
 mapResultT :: (Functor m, Functor n) => (m (T.Result a) -> n (T.Result b)) -> T.ResultT m a -> T.ResultT n b
 mapResultT f = T.mapResultT $ T.runResultT . ResultT . f . runResultT . T.ResultT
 {-# INLINE mapResultT #-}
+
+-- | Map the error in 'T.ResultT'.
+mapErrorT :: Functor m => (String -> String) -> T.ResultT m a -> T.ResultT m a
+mapErrorT f =
+  mapResultT $ fmap go
+  where
+    go (Error e) = Error $ f e
+    go a         = a
+{-# INLINE mapErrorT #-}
