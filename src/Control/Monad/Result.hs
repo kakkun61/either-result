@@ -33,9 +33,9 @@ module Control.Monad.Result
   , module Control.Monad
   , module Control.Monad.Fix
   , module Control.Monad.Trans
+  , module Control.Monad.Error.Class
   ) where
 
-import Control.Monad.Error.Class         (MonadError (catchError, throwError))
 import Control.Monad.Trans.Except.Result (Result, ResultT)
 import Control.Monad.Trans.Result        (catchE, fromEither, fromSuccess, mapResultT, pattern Error, pattern Result,
                                           pattern ResultT, pattern Success, result, runResult, runResultT, throwE,
@@ -44,6 +44,7 @@ import Control.Monad.Trans.Result        (catchE, fromEither, fromSuccess, mapRe
 import Control.Monad
 import Control.Monad.Fix
 import Control.Monad.Trans
+import Control.Monad.Error.Class
 
 instance Monad m => MonadError String (ResultT m) where
   throwError = throwE
