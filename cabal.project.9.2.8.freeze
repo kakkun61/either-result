@@ -1,4 +1,7 @@
 active-repositories: hackage.haskell.org:merge
+
+with-compiler: ghc-9.2.8
+
 constraints: any.Cabal ==3.6.3.0,
              any.HUnit ==1.6.2.0,
              any.OneTuple ==0.4.1.1,

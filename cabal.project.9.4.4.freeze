@@ -1,4 +1,7 @@
 active-repositories: hackage.haskell.org:merge
+
+with-compiler: ghc-9.4.4
+
 constraints: any.Cabal ==3.8.1.0,
              any.Cabal-syntax ==3.8.1.0,
              any.HUnit ==1.6.2.0,
