@@ -1,5 +1,13 @@
 # Revision history for either-result
 
+## 0.3.2.0
+
+*2025.08.18*
+
+- add COMPLETE Pragma for `Result` pattern
+- add `mapError`
+- make `Control.Monad.Result` re-export `Control.Monad.Error.Class`
+
 ## 0.3.1.0
 
 *2020.08.16*

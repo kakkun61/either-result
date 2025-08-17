@@ -1,7 +1,7 @@
 cabal-version: 2.2
 
 name: either-result
-version: 0.3.1.0
+version: 0.3.2.0
 synopsis: The simplest ‘MonadFail’ instance
 description: ‘ResultT m a’ is a wrapper of ‘ExceptT String m a’ which are similar except ‘MonadFail’ instance.
 homepage: https://github.com/kakkun61/either-result
